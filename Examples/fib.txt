@@ -1,0 +1,40 @@
+jmp main
+
+fib:
+
+ popr ax
+ push 2
+ pushr ax
+ jae stop
+ 
+ pushr ax
+ push -1
+ add
+
+ pushr ax
+ push -2
+ add
+ call fib
+
+ popr ax
+ popr bx
+ pushr ax
+ pushr bx
+
+ call fib
+
+ add
+
+ret
+
+ stop:
+ push 1
+
+ret
+
+
+main:
+
+ in
+ call fib
+ out

@@ -1,0 +1,153 @@
+jmp main
+
+line_solver:
+ popr cx
+ popr bx
+
+ pushr bx 
+ push 0
+ je else_1
+
+  push -1
+  pushr cx
+  mul
+  pushr bx
+  div
+  push 1
+
+  jmp endif_1
+ else_1:
+  
+  pushr cx
+  push 0
+  je else_2
+   
+   push 0
+   
+   jmp endif_2
+  else_2:
+
+   push -1
+
+  endif_2:
+  
+ endif_1:
+
+ret
+
+square_solver:
+ popr cx
+ popr bx
+ popr ax
+
+ pushr ax
+ push 0
+ jne a_not_0
+
+ pushr bx
+ pushr cx
+
+ call line_solver
+
+ ret
+
+ a_not_0:
+
+ pushr bx
+ pushr bx
+ mul
+
+ push -4
+ pushr ax
+ pushr cx
+ mul
+ mul
+
+ add
+
+ popr dx
+
+ pushr dx
+ push 0
+ jae d_>=_0
+ 
+  push 0
+  ret
+
+ d_>=_0:
+
+ pushr dx
+ push 0
+ ja d_>_0:
+
+  push -1
+  pushr bx
+  mul
+
+  push 2
+  pushr ax
+  mul
+
+  div
+
+  push 1
+
+  ret
+
+ d_>_0:
+
+ pushr dx
+ sqrt
+ popr dx
+
+ pushr ax
+ push 2
+ mul
+ popr ax
+
+ pushr bx
+ push -1
+ mul
+ popr bx
+
+
+ pushr bx
+ pushr dx
+ add
+ pushr ax
+ div
+
+ pushr bx
+ pushr dx
+ sub
+ pushr ax
+ div
+ 
+ push 2
+
+ret
+
+main:
+
+ in
+ in
+ in
+
+ call square_solver
+
+ popr ax
+ pushr ax
+ 
+ next:
+  out
+
+  pushr ax
+  pushr ax
+  push -1
+  add
+  popr ax
+
+  push 1
+ jae next
+ 
+

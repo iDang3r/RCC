@@ -1,0 +1,29 @@
+jmp main
+
+fact:
+
+ popr ax
+ push 1
+ pushr ax
+ jae stop_fact
+ 
+ pushr ax
+ pushr ax 
+ push -1
+ add
+ call fact
+ mul
+
+ret
+
+ stop_fact:
+ push 1
+
+ret
+
+
+main:
+
+ push 6
+ call fact
+ out
