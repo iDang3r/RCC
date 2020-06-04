@@ -49,7 +49,7 @@ Rusin Compiler Collection
 `jmp     `| безусловнй jump
 `ja, je..`| условные джампы 
 
-> Пример простой программы, решающей [квадратное уравнене](https://github.com/iDang3r/RCC/blob/master/Examples/SquareSolver.txt), а так же нахождение факториала рекурсивно
+> Пример простой программы, находящей факториал рекурсивно, а так же решающей [квадратное уравнене](https://github.com/iDang3r/RCC/blob/master/Examples/SquareSolver.txt)
 
 ```asm
 jmp main
