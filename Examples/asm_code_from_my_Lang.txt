@@ -1,0 +1,153 @@
+push 19
+popr ax
+jmp main
+
+l:
+popm [ax + 1]
+popm [ax + 0]
+pushm [ax + 0]
+push 0
+jne jmp_1
+pushm [ax + 1]
+push 0
+jne jmp_3
+push -1
+jmp jmp_4
+jmp_3:
+push 0
+jmp_4:
+jmp jmp_2
+jmp_1:
+push -1
+pushm [ax + 1]
+mul
+pushm [ax + 0]
+div
+popm [15]
+push 1
+jmp_2:
+ret
+s:
+popm [ax + 2]
+popm [ax + 1]
+popm [ax + 0]
+pushm [ax + 0]
+push 0
+jne jmp_5
+pushm [ax + 1]
+pushm [ax + 2]
+pushr ax
+push 3
+add
+popr ax
+call l
+pushr ax
+push 3
+sub
+popr ax
+jmp jmp_6
+jmp_5:
+pushm [ax + 1]
+pushm [ax + 1]
+mul
+push 4
+pushm [ax + 0]
+mul
+pushm [ax + 2]
+mul
+sub
+popm [13]
+pushm [13]
+push 0
+jae jmp_7
+push 0
+jmp jmp_8
+jmp_7:
+pushm [13]
+push 0
+je jmp_9
+push -1
+pushm [ax + 1]
+mul
+pushm [13]
+sqrt
+add
+push 2
+pushm [ax + 0]
+mul
+div
+popm [15]
+push -1
+pushm [ax + 1]
+mul
+pushm [13]
+sqrt
+sub
+push 2
+pushm [ax + 0]
+mul
+div
+popm [16]
+push 2
+jmp jmp_10
+jmp_9:
+push -1
+pushm [ax + 1]
+mul
+push 2
+pushm [ax + 0]
+mul
+div
+popm [15]
+push 1
+jmp_10:
+jmp_8:
+jmp_6:
+ret
+
+
+main:
+in
+popm [10]
+in
+popm [11]
+in
+popm [12]
+pushm [10]
+pushm [11]
+pushm [12]
+pushr ax
+push 0
+add
+popr ax
+call s
+pushr ax
+push 0
+sub
+popr ax
+popm [14]
+pushm [14]
+push 2
+jne jmp_11
+pushm [14]
+out
+pushm [15]
+out
+pushm [16]
+out
+jmp jmp_12
+jmp_11:
+pushm [14]
+push 1
+jne jmp_13
+pushm [14]
+out
+pushm [15]
+out
+jmp jmp_14
+jmp_13:
+pushm [14]
+out
+jmp_14:
+jmp_12:
+push 0
